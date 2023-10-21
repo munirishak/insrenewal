@@ -11,6 +11,7 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
+  secret: process.env.SECRET || "",
   callbacks: {
     async signIn({ account, profile }) {
       //post check after google successfully logged in
