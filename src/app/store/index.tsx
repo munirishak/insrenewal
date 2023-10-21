@@ -1,6 +1,6 @@
 
 import { combineReducers, configureStore  } from "@reduxjs/toolkit";
-import { authReducer } from "./slices/authSlice";
+import { IAuthState, authReducer } from "./slices/authSlice";
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import { persistReducer } from "redux-persist";
 import logger from "redux-logger";
@@ -8,6 +8,10 @@ import logger from "redux-logger";
 const persistConfig = {
   key: 'root',
   storage,
+}
+
+export type ReducerType = {
+  auth:IAuthState
 }
 
 const rootReducer = combineReducers({

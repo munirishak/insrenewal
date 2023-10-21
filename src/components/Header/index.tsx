@@ -1,5 +1,6 @@
 "use client";
 
+import { ReducerType } from "@/app/store";
 import { Button, Navbar } from "flowbite-react";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -9,7 +10,7 @@ export default function MyHeader() {
   const [name, setName] = useState("");
 
   // const sessionDetails = store.getState().auth.sessionDetails;
-  const sessionDetails = useSelector((state) => state?.auth?.sessionDetails);
+  const sessionDetails = useSelector((state: ReducerType) => state?.auth?.sessionDetails);
 
   const handleLogout = () => {
     signOut({ callbackUrl: '/login' });

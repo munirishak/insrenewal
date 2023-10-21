@@ -20,7 +20,7 @@ type PageData = {
   data: UserType[];
 };
 
-export const callUserApi = async (currPage: number) => {
+const callUserApi = async (currPage: number) => {
     const resp = await fetch("https://reqres.in/api/users?page=" + currPage);
     return await resp.json();
   };
