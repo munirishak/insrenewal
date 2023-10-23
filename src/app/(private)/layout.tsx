@@ -1,11 +1,11 @@
 "use client";
 
-import MyFooter from "@/components/Footer";
-import MyHeader from "@/components/Header";
 import { Alert, Button } from "flowbite-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { HiInformationCircle } from "react-icons/hi";
+import MyHeader from "../components/Header";
+import MyFooter from "../components/Footer";
 
 export default function PrivateLayout({
   children,

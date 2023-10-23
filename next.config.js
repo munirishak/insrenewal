@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   env: {
     GOOGLE_ID:
       "881121972790-a9qqjdtks5acg9lbmqn8dlh2t74inh1k.apps.googleusercontent.com",

@@ -1,9 +1,47 @@
-"use client";
+"use client"
 
-import Home from "@/controller/home";
+import { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ReducerType } from "@/app/store";
+import { UserType, clearUsers, setUsersList, toggleEmail } from "@/app/store/slices/usersSlice";
+import UserCard from "./component/UserCard";
+import { getUsersApi } from "./service";
 
-export default function HomePage() {
+export default function Home() {
+  const dispatch = useDispatch();
+  const usersList = useSelector((state: ReducerType) => state?.users?.users);
+
+  const callUserApi = async (currPage: number) => {
+    const resp = await getUsersApi(currPage);
+    console.log(resp)
+    dispatch(setUsersList(resp));
+  };
+
+  const handleToggleEmail = (idx: number) => {
+    dispatch(toggleEmail(idx));
+  };
+
+  const handleData = useCallback(() => {
+    if (usersList.page === 0 || usersList.page + 1 <= usersList.total_pages) {
+      callUserApi(usersList.page + 1);
+    }
+  }, [usersList]);
+
+  useEffect(() => {
+    handleData();
+  }, [usersList]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearUsers());
+    };
+  }, []);
+
   return (
-    <Home/>
+    <div className="grid grid-cols-1 md:grid-cols-4">
+      {usersList?.data?.map((user: UserType, idx: number) => (
+        <UserCard user={user} index={idx} onToggleEmail={handleToggleEmail}/>
+      ))}
+    </div>
   );
 }
