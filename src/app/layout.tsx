@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "@/components/NextAuthProvider";
-import ReduxProvider from "./store/reduxProvider";
+import ReduxProvider from "@/store/reduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      
         <NextAuthProvider><ReduxProvider>{children}</ReduxProvider></NextAuthProvider>
-        
       </body>
     </html>
   );
