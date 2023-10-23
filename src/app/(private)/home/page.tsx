@@ -25,22 +25,22 @@ export default function Home() {
     if (usersList.page === 0 || usersList.page + 1 <= usersList.total_pages) {
       callUserApi(usersList.page + 1);
     }
-  }, [usersList]);
+  }, [usersList, callUserApi]);
 
   useEffect(() => {
     handleData();
-  }, [usersList]);
+  }, [usersList, handleData]);
 
   useEffect(() => {
     return () => {
       dispatch(clearUsers());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4">
       {usersList?.data?.map((user: UserType, idx: number) => (
-        <UserCard user={user} index={idx} onToggleEmail={handleToggleEmail}/>
+        <UserCard key={"card"+idx} user={user} index={idx} onToggleEmail={handleToggleEmail}/>
       ))}
     </div>
   );

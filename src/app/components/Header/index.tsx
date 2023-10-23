@@ -1,6 +1,6 @@
 "use client";
 
-import { ReducerType } from "@/store";
+import { ReducerType } from "@/app/store";
 import { Button, Navbar } from "flowbite-react";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
