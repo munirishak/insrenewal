@@ -49,7 +49,6 @@ export default function Home() {
       currPage += 1;
     }
     
-    console.log(usersResp);
     setUsers(usersResp);
   };
 

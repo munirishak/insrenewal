@@ -14,7 +14,7 @@ export default function LoginPage() {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    signIn("google", { callbackUrl: '/home' })
+    signIn("google")
   }
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export default function LoginPage() {
     if (status === "authenticated") {
       dispatch(setSession(session));
       dispatch(setAuth(true));
+      router.replace("home");
     }
 
   },[status]);
